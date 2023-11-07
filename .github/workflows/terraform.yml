@@ -20,25 +20,25 @@ jobs:
         
     - name: Confugurando Credenciais da AWS
       run: |
-        aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws configure set aws_access_key_id AKIAZIUWGA4PBQTXU6EZ
+        aws configure set aws_secret_access_key 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
         aws configure set default.region us-east-1
       env:
         AWS_REGION: us-east-1 
     
     - name: Set environment variables for Terraform
       run: |
-        export TF_VAR_db_username=$DB_USERNAME
-        export TF_VAR_db_password=$DB_PASSWORD
+        export TF_VAR_db_username=bancoteste
+        export TF_VAR_db_password=1234
 
     - name: Terraform Init
       run: terraform init
 
     - name: Terraform Plan
-      run: terraform plan -input=false -var="db_username=${{ secrets.AWS_DOCUMENTDB_USER }}" -var="db_password=${{ secrets.AWS_DOCUMENTDB_PASSWORD }}" -out=tfplan
+      run: terraform plan -input=false -var="db_username=bancoteste" -var="db_password=1234" -out=tfplan
 
     - name: Terraform Apply
-      run: terraform apply -input=false -auto-approve -var="db_username=${{ secrets.AWS_DOCUMENTDB_USER }}" -var="db_password=${{ secrets.AWS_DOCUMENTDB_PASSWORD }}"
+      run: terraform apply -input=false -auto-approve -var="db_username=bancoteste" -var="db_password=1234"
       continue-on-error: true
 
     - name: Terraform Show
