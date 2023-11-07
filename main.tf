@@ -32,8 +32,8 @@ resource "aws_security_group" "this" {
 resource "aws_docdb_cluster" "document_db" {
   cluster_identifier     = "fastfood-docdb2-cluster"
   engine                 = "docdb"
-  master_username        = bancoteste
-  master_password        = 1234
+  master_username        = var.db_username
+  master_password        = var.db_password
   skip_final_snapshot    = true
   db_subnet_group_name   = "aws_documentdb_subnets_group"
   vpc_security_group_ids = ["sg-0d1082460cf73ab1a"]
