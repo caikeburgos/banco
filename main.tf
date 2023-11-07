@@ -1,7 +1,7 @@
 # Criacao da Subnet Group (Se ela ja for criada, ela dar um erro)
 resource "aws_docdb_subnet_group" "default" {
   name       = "aws_documentdb_subnets_group"
-  subnet_ids = ["subnet-0c7b856b1f711f677", "subnet-0908e9ab2aa6b159e", "subnet-0f8438472afe65156", "subnet-038888a2be2ea6651", "subnet-03d0ba95451a0827a", "subnet-00d6542dcd387a9e6"]
+  subnet_ids = ["subnet-07b35b7675d09751a"]
 }
 
 # Criacao do Security Group com suas regras!
@@ -9,7 +9,7 @@ resource "aws_security_group" "this" {
   name        = "security_group_documentdb_fastfood" # Nome do grupo de segurança
   description = "Allow inbound traffic"
 
-  vpc_id = "vpc-0e9b8ee3729fd95f0" # ID da sua VPC
+  vpc_id = "vpc-0e318cc5c6fca5a51" # ID da sua VPC
 
   # Inobound / Entrada
   ingress {
@@ -36,7 +36,7 @@ resource "aws_docdb_cluster" "document_db" {
   master_password        = var.db_password
   skip_final_snapshot    = true
   db_subnet_group_name   = "aws_documentdb_subnets_group"
-  vpc_security_group_ids = ["sg-06474215984a0c702"]
+  vpc_security_group_ids = ["sg-0d1082460cf73ab1a"]
 }
 
 # Cria a instancia do DocumentDB
